@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Practico6lab1C2.vistas;
 
 import java.util.TreeSet;
@@ -11,20 +6,15 @@ import javax.swing.table.DefaultTableModel;
 import Practico6Lab1c2.entidades.Producto;
 import Practico6Lab1c2.entidades.Rubro;
 
-/**
- *
- * @author Szael
- */
 public class ConsultaProductoRubro extends javax.swing.JInternalFrame {
-private TreeSet<Producto> productos;
-private DefaultTableModel modelo=new DefaultTableModel();
-    /**
-     * Creates new form ConsultaProductoRubro
-     */
+
+    private TreeSet<Producto> productos;
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     public ConsultaProductoRubro(TreeSet<Producto> productos) {
         initComponents();
-       this.setLocation(500, 200);
-        this.productos=productos;
+        this.setLocation(500, 200);
+        this.productos = productos;
         llenarCombo();
         armarCabecera();
     }
@@ -129,56 +119,55 @@ private DefaultTableModel modelo=new DefaultTableModel();
     private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
         // TODO add your handling code here:
         borrarFilas();
-        Rubro rubro=(Rubro)jcCategorias.getSelectedItem();
-       
-        
-        for(Producto prod:productos){
-        
-            if(rubro.equals(prod.getRubro())){
-                            
-              Vector renglon=new Vector<>();
-              renglon.add(prod.getCodigo());
-              renglon.add(prod.getDescripcion());
-              renglon.add(prod.getPrecio());
-              renglon.add(prod.getStock());
+        Rubro rubro = (Rubro) jcCategorias.getSelectedItem();
 
-              modelo.addRow(renglon);
+        for (Producto prod : productos) {
+
+            if (rubro.equals(prod.getRubro())) {
+
+                Vector renglon = new Vector<>();
+                renglon.add(prod.getCodigo());
+                renglon.add(prod.getDescripcion());
+                renglon.add(prod.getPrecio());
+                renglon.add(prod.getStock());
+
+                modelo.addRow(renglon);
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jcCategoriasActionPerformed
 
+    private void llenarCombo() {
 
-     private void llenarCombo(){
-    
-        Rubro comestible=new Rubro(1,"Comestible");
-        Rubro limpieza=new Rubro(2,"Limpieza");
-        Rubro perfumeria=new Rubro(3,"Perfumeria");
-        
+        Rubro comestible = new Rubro(1, "Comestible");
+        Rubro limpieza = new Rubro(2, "Limpieza");
+        Rubro perfumeria = new Rubro(3, "Perfumeria");
+
         jcCategorias.addItem(comestible);
         jcCategorias.addItem(limpieza);
         jcCategorias.addItem(perfumeria);
-        
+
     }
-     private void armarCabecera(){
-       
-         modelo.addColumn("Codigo");
-         modelo.addColumn("Descripcion");
-         modelo.addColumn("Precio");
-         modelo.addColumn("Stock");
-          modelo.addColumn("Rubro");
-         jtLista.setModel(modelo);
-     }
-     
-     private void borrarFilas(){
-     
-         int filas=modelo.getRowCount()-1;
-         for(int f=filas;f >= 0;f--){
-         
-             modelo.removeRow(f);
-         }
-     }
+
+    private void armarCabecera() {
+
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
+        jtLista.setModel(modelo);
+    }
+
+    private void borrarFilas() {
+
+        int filas = modelo.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
+
+            modelo.removeRow(f);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -11,20 +11,15 @@ import javax.swing.table.DefaultTableModel;
 import Practico6Lab1c2.entidades.Producto;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author tDev
- */
 public class ConsultaPorPrecio extends javax.swing.JInternalFrame {
-private TreeSet<Producto> productos;
-private DefaultTableModel modelo=new DefaultTableModel();
-    /**
-     * Creates new form ListadoNombre
-     */
+
+    private TreeSet<Producto> productos;
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     public ConsultaPorPrecio(TreeSet<Producto> productos) {
         initComponents();
         this.setLocation(500, 200);
-        this.productos=productos;
+        this.productos = productos;
         armarCabecera();
     }
 
@@ -148,42 +143,42 @@ private DefaultTableModel modelo=new DefaultTableModel();
 
     private void jtfPrecioMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPrecioMinActionPerformed
         // TODO add your handling code here:
-        if(!jtfPrecioMin.getText().isEmpty()){
+        if (!jtfPrecioMin.getText().isEmpty()) {
 
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Ingrese un precio min");
             jtfPrecioMin.requestFocus();
             return;
         }
-        
+
     }//GEN-LAST:event_jtfPrecioMinActionPerformed
 
     private void jtPrecioMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecioMaxActionPerformed
-        // TODO add your handling code here:
+
         borrarFilas();
 
         String find1;
-        
-            String find=jtfPrecioMin.getText();
-            
-        if(!jtPrecioMax.getText().isEmpty()){
-        
-            find1=jtPrecioMax.getText();
-        }else {
+
+        String find = jtfPrecioMin.getText();
+
+        if (!jtPrecioMax.getText().isEmpty()) {
+
+            find1 = jtPrecioMax.getText();
+        } else {
             JOptionPane.showMessageDialog(this, "Ingrese un precio maximo");
             jtPrecioMax.requestFocus();
             return;
         }
         System.out.println(find);
-        
-        for(Producto prod:productos){
-            
-          double finD= Double.parseDouble(find);
-          double finD1= Double.parseDouble(find1);
-         
-            if(prod.getPrecio()>finD && prod.getPrecio()<finD1){
-            
-                Vector renglon=new Vector();
+
+        for (Producto prod : productos) {
+
+            double finD = Double.parseDouble(find);
+            double finD1 = Double.parseDouble(find1);
+
+            if (prod.getPrecio() > finD && prod.getPrecio() < finD1) {
+
+                Vector renglon = new Vector();
                 renglon.add(prod.getCodigo());
                 renglon.add(prod.getDescripcion());
                 renglon.add(prod.getPrecio());
@@ -195,24 +190,24 @@ private DefaultTableModel modelo=new DefaultTableModel();
         }
     }//GEN-LAST:event_jtPrecioMaxActionPerformed
 
- private void armarCabecera(){
-       
-         modelo.addColumn("Codigo");
-         modelo.addColumn("Descripcion");
-         modelo.addColumn("Precio");
-         modelo.addColumn("Stock");
-          modelo.addColumn("Rubro");
-         jtTablaPrecio.setModel(modelo);
-     }
-     
-     private void borrarFilas(){
-     
-         int filas=modelo.getRowCount()-1;
-         for(int f=filas;f >= 0;f--){
-         
-             modelo.removeRow(f);
-         }
-     }
+    private void armarCabecera() {
+
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
+        jtTablaPrecio.setModel(modelo);
+    }
+
+    private void borrarFilas() {
+
+        int filas = modelo.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
+
+            modelo.removeRow(f);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;

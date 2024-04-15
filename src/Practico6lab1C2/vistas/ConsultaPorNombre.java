@@ -4,15 +4,10 @@
  */
 package Practico6lab1C2.vistas;
 
-/**
- *
- * @author Hollmann
- */
+
 public class ConsultaPorNombre extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form consultaPorNombre
-     */
+    
     public ConsultaPorNombre() {
         initComponents();
     }

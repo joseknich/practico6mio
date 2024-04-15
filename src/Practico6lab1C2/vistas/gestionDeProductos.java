@@ -11,23 +11,18 @@ import javax.swing.JOptionPane;
 import Practico6Lab1c2.entidades.Producto;
 import Practico6Lab1c2.entidades.Rubro;
 
-/**
- *
- * @author Hollmann
- */
 public class gestionDeProductos extends javax.swing.JInternalFrame {
-private TreeSet<Producto> productos;
-private Producto auxiliar=null;
-    /**
-     * Creates new form gestionDeProductos
-     */
+
+    private TreeSet<Producto> productos;
+    private Producto auxiliar = null;
+
     public gestionDeProductos(TreeSet<Producto> productos) {
-       
+
         initComponents();
         this.setLocation(500, 200);
-        this.productos=productos;
+        this.productos = productos;
         llenarCombo();
-       
+
     }
 
     /**
@@ -213,93 +208,92 @@ private Producto auxiliar=null;
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
         int codigo;
-        if(validaEntero(jtCodigo.getText())){
+        if (validaEntero(jtCodigo.getText())) {
             codigo = Integer.parseInt(jtCodigo.getText());
-        }else {
-        
+        } else {
+
             JOptionPane.showMessageDialog(this, "Ingresar un nro ");
             jtCodigo.requestFocus();
             return;
         }
-        
-        for(Producto prod:productos){
- 
-            if(codigo==prod.getCodigo()){
-            
+
+        for (Producto prod : productos) {
+
+            if (codigo == prod.getCodigo()) {
+
                 jtDescripcion.setText(prod.getDescripcion());
-                jtPrecio.setText(prod.getPrecio()+"");
-                jtStock.setText(prod.getStock()+"");
+                jtPrecio.setText(prod.getPrecio() + "");
+                jtStock.setText(prod.getStock() + "");
                 jcRubros.setSelectedItem(prod.getRubro());
                 jbEliminar.setEnabled(true);
-                auxiliar=prod;
+                auxiliar = prod;
                 return;
-                
+
             }
         }
-        
+
         JOptionPane.showMessageDialog(this, "Codigo inexistente");
         limpiar();
-        
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-        
+
         int codigo;
         String descripcion;
         double precio;
         Rubro rubro;
         int stock;
-       
-        if(validaEntero(jtCodigo.getText())){
+
+        if (validaEntero(jtCodigo.getText())) {
             codigo = Integer.parseInt(jtCodigo.getText());
-        }else {
-        
+        } else {
+
             JOptionPane.showMessageDialog(this, "Ingresar un nro ");
             jtCodigo.requestFocus();
             return;
         }
-       
-        if(validaEntero(jtStock.getText())){
+
+        if (validaEntero(jtStock.getText())) {
             stock = Integer.parseInt(jtStock.getText());
-        }else {
-        
+        } else {
+
             JOptionPane.showMessageDialog(this, "Ingresar un nro ");
             jtStock.requestFocus();
             return;
         }
-        
-        if(validaReal(jtPrecio.getText())){
+
+        if (validaReal(jtPrecio.getText())) {
             precio = Double.parseDouble(jtPrecio.getText());
-        }else {
-        
+        } else {
+
             JOptionPane.showMessageDialog(this, "Ingresar un nro ");
             jtPrecio.requestFocus();
             return;
         }
-        
-        if(!jtDescripcion.getText().isEmpty()){
-        
+
+        if (!jtDescripcion.getText().isEmpty()) {
+
             descripcion = jtDescripcion.getText();
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Ingresar una descripcion");
             jtDescripcion.requestFocus();
             return;
         }
-         
-         
-       rubro = (Rubro)jcRubros.getSelectedItem();
-      
-       Producto nvoProd=new Producto(codigo,descripcion,precio,rubro,stock);
-       if(productos.add(nvoProd)){
-           JOptionPane.showMessageDialog(this, "Producto Agregado");
-           limpiar();
-       }else {
-       
-           JOptionPane.showMessageDialog(this, "Ya existe un producto con ese código");
-       }
-       
-        
+
+        rubro = (Rubro) jcRubros.getSelectedItem();
+
+        Producto nvoProd = new Producto(codigo, descripcion, precio, rubro, stock);
+        if (productos.add(nvoProd)) {
+            JOptionPane.showMessageDialog(this, "Producto Agregado");
+            limpiar();
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Ya existe un producto con ese código");
+        }
+
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
@@ -309,56 +303,55 @@ private Producto auxiliar=null;
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
-         
-                int opcion=JOptionPane.showConfirmDialog(this, "Confirma Eliminación S/N", "Confirmación",JOptionPane.YES_NO_OPTION);
-                if(opcion==JOptionPane.YES_OPTION){
-                     productos.remove(auxiliar);
-                    JOptionPane.showMessageDialog(this, "Producto Eliminado ");
-                    limpiar();
-                    auxiliar=null;
-                }
-               
-                
-      
+
+        int opcion = JOptionPane.showConfirmDialog(this, "Confirma Eliminación S/N", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            productos.remove(auxiliar);
+            JOptionPane.showMessageDialog(this, "Producto Eliminado ");
+            limpiar();
+            auxiliar = null;
+        }
+
+
     }//GEN-LAST:event_jbEliminarActionPerformed
 
-    private void llenarCombo(){
-    
-        Rubro comestible=new Rubro(1,"Comestible");
-        Rubro limpieza=new Rubro(2,"Limpieza");
-        Rubro perfumeria=new Rubro(3,"Perfumeria");
-        
+    private void llenarCombo() {
+
+        Rubro comestible = new Rubro(1, "Comestible");
+        Rubro limpieza = new Rubro(2, "Limpieza");
+        Rubro perfumeria = new Rubro(3, "Perfumeria");
+
         jcRubros.addItem(comestible);
         jcRubros.addItem(limpieza);
         jcRubros.addItem(perfumeria);
-        
+
     }
 
-    private boolean validaEntero(String nro){
-    
-        Pattern patron=Pattern.compile("^[0-9]+$");
-        Matcher m=patron.matcher(nro);
+    private boolean validaEntero(String nro) {
+
+        Pattern patron = Pattern.compile("^[0-9]+$");
+        Matcher m = patron.matcher(nro);
         return m.matches();
     }
 
-    private boolean validaReal(String nro){
-    Pattern patron=Pattern.compile("^[0-9]+.[0-9]{2}$");
-        Matcher m=patron.matcher(nro);
+    private boolean validaReal(String nro) {
+        Pattern patron = Pattern.compile("^[0-9]+.[0-9]{2}$");
+        Matcher m = patron.matcher(nro);
         return m.matches();
-        
+
     }
-    
-    private void limpiar(){
-    
+
+    private void limpiar() {
+
         jtCodigo.setText("");
         jtDescripcion.setText("");
         jtPrecio.setText("");
         jtStock.setText("");
         jcRubros.setSelectedIndex(-1);
         jbEliminar.setEnabled(false);
-        auxiliar=null;
+        auxiliar = null;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
