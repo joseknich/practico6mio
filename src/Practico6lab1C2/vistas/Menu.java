@@ -1,6 +1,5 @@
 package Practico6lab1C2.vistas;
 
-import Practico6Lab1c2.entidades.EscritorioPersonalizado;
 import java.util.TreeSet;
 import Practico6Lab1c2.entidades.Producto;
 import java.awt.Graphics;

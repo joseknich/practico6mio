@@ -1,1 +1,0 @@
-Practico6Lab1c2.entidades.EscritorioPersonalizado
